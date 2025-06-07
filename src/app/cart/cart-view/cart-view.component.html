@@ -1,3 +1,11 @@
 <div class="container-sm">
-    
+    <h1>Your Cart</h1>
+    <mat-card>
+        <mat-list>
+            <mat-list-item *ngFor="let item of cartitems">
+                <span matListItemLine>{{item.name}}</span>
+                <span matListItemLine>{{item.price | currency:"USD"}}</span>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
 </div>
