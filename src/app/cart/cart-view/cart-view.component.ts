@@ -27,4 +27,11 @@ export class CartViewComponent implements OnInit{
     return this.totalPrice;
   }
 
+  clearCart(): void {
+    this.cartService.clearCart().subscribe(() => {
+      this.cartitems = [];
+      this.totalPrice = 0;
+    });
+  } 
+
 }
