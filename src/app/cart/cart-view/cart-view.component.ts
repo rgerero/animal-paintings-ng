@@ -35,7 +35,7 @@ export class CartViewComponent implements OnInit{
   } 
 
   checkOutCart(): void {
-    this.cartService.checkOut(this.cartitems ).subscribe(() => {
+    this.cartService.checkOut(this.cartitems).subscribe(() => {
       this.cartitems = [];
       this.totalPrice = 0;
       alert('Checkout successful!');
