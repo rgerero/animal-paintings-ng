@@ -12,14 +12,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProductListComponent implements OnInit {
 
   products: Product[]=[]
+  filteredProducts: Product[] = [];
 
   constructor(private productService: ProductService
     , private cartService: CartService
-    , private snackbar: MatSnackBar){  }
+    , private snackbar: MatSnackBar
+    ){  }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(data => {
       this.products = data;
+      this.filteredProducts = data;
     })
   }
 
@@ -34,5 +37,21 @@ export class ProductListComponent implements OnInit {
       }
     });
   }
+
+  applyFilter(event: Event): void {
+    let filterValue = (event.target as HTMLInputElement).value;
+    filterValue = filterValue.trim().toLowerCase();
+    
+    this.filteredProducts = this.products.filter(product => 
+      product.name.toLowerCase().includes(filterValue) 
+    );
+    // this.productService.getProducts().subscribe(data => {
+    //   this.products = data.filter(product => 
+    //     product.name.toLowerCase().includes(searchText) || 
+    //     product.description.toLowerCase().includes(searchText)
+    //   );
+    // });
+  }
+
 
 }
